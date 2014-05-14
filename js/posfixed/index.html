@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gorik: position fixed</title>
+  <!--[if IE 9]><meta http-equiv="X-UA-Compatible" content="IE=9"><![endif]-->
+  <!--[if IE 8]><meta http-equiv="X-UA-Compatible" content="IE=8"><![endif]-->
+  <meta charset="utf-8">
+  <link href="css/styles.css" rel="stylesheet">
+  <!--[if IE 9]><link rel="stylesheet" href="css/ie9.css" type="text/css"><![endif]-->
+  <!--[if lte IE 8]><link rel="stylesheet" href="css/ie.css" type="text/css"><![endif]-->
+</head>
+<body>
+
+<div class="main" id="top">
+
+  <div class="header">
+    <div class="wrapper clearfix">
+      <a href="http://gorik.name/" title="домашняя страница Горика" class="logo">Some logo</a>
+      <div class="top_menu">
+        <a href="#01">Item 01</a>
+        <a href="#02">Item 02</a>
+        <a href="#03">Item 03</a>
+        <a href="#04">Item 04</a>
+        <a href="#05">Item 05</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="search_box">
+    <div class="wrapper">
+
+      <div class="search_field">
+        <form action="?" method="get">
+
+          <div class="search_label">Search label</div>
+
+          <span class="btn_stl search_btn" onClick="javascript:$(this).closest('form').submit();">Search</span>
+
+          <div class="search_input">
+            <div class="input">
+              <input id="main_search_input" class="text_input" type="text" name="search" autocomplete="off">
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="wrapper clearfix">
+
+      <div class="left_sidebar">
+        <div class="sidebar_box">
+          <p>Lorem ipsum dolor sit amet,</p>
+          <p>consectetur adipisicing elit. Sunt,</p>
+          <p>ullam, adipisci, dignissimos</p>
+          <p>aut explicabo iste suscipit nisi modi</p>
+          <p>minima quibusdam repudiandae</p>
+          <p>alias culpa ad. Voluptatem</p>
+          <p>accusamus voluptatibus aliquam illum autem.</p>
+        </div>
+        <div class="sidebar_box">
+          <p>Lorem ipsum dolor sit amet,</p>
+          <p>consectetur adipisicing elit. Sunt,</p>
+          <p>ullam, adipisci, dignissimos</p>
+          <p>aut explicabo iste suscipit nisi modi</p>
+          <p>minima quibusdam repudiandae</p>
+          <p>alias culpa ad. Voluptatem</p>
+          <p>accusamus voluptatibus aliquam illum autem.</p>
+        </div>
+        <div class="sidebar_box">
+          <p>Lorem ipsum dolor sit amet,</p>
+          <p>consectetur adipisicing elit. Sunt,</p>
+          <p>ullam, adipisci, dignissimos</p>
+          <p>aut explicabo iste suscipit nisi modi</p>
+          <p>minima quibusdam repudiandae</p>
+          <p>alias culpa ad. Voluptatem</p>
+          <p>accusamus voluptatibus aliquam illum autem.</p>
+        </div>
+      </div>
+
+      <div class="right_sidebar">
+        <div id="right_float" class="sidebar_box">
+          <p>Lorem ipsum dolor sit amet,</p>
+          <p>consectetur adipisicing elit. Sunt,</p>
+          <p>ullam, adipisci, dignissimos</p>
+          <p>aut explicabo iste suscipit nisi modi</p>
+          <p>minima quibusdam repudiandae</p>
+          <p>alias culpa ad. Voluptatem</p>
+          <p>accusamus voluptatibus aliquam illum autem.</p>
+        </div>
+      </div>
+
+      <div class="content_col" id="float_area">
+        <h1>Gorik: jQuery position fixed</h1>
+        <p>Небольшой скрипт, в виде jQuery плагина, для фиксированного положения элемента на странице во время прокрутки страницы по вертикали.</p>
+        <h2>Подключение:</h2>
+        <ul>
+          <li>Подключаем библиотеку jQuery 1.8+</li>
+          <li>Подключаем плагин pos.fixed.js</li>
+          <li>Подключаем скрипт для нужного нам элемента:<br>
+  <pre>
+    $('document').ready(function(){
+      $('.search_field').fixeditem();
+    });
+  </pre>
+          </li>
+        </ul>
+        <h2>Параметры:</h2>
+        <p><b>position</b> - Параметр для вертикального позиционирования элемента на странице. Возможные значения: <i>"top"</i> и <i>"bottom"</i>. Значение по умолчанию: <i>"top"</i>;</p>
+        <p><b>correctY</b> - Значение в пикселях для смещения элемента по вертикали. Для позиционирования "top" - это будет отступ от верхнего края страницы, соответственно для "bottom" - от нижнего. Значение по умолчанию: <i>0</i>;</p>
+        <p><b>fixedClass</b> - CSS класс, который добавляется к элементу после изменения его позиционирования на "fixed". Значение по умолчанию: <i>"state_fixed"</i>;</p>
+        <p><b>container</b> - Блок, желательно родительский, в пределах которого элемент будет иметь позиционирование "fixed". Возможные значения: <i>".some_class"</i> и <i>"#some_id"</i>. По умолчанию - отсутствует;</p>
+        <p><b>rightSide</b> - Параметр, который выравнивает положение элемента, в случае если элемент спозиционирован по правому краю родителя. Для строчных элементов это может быть text-align:right, для блочных - float:right. Возможные значения: <i>true</i> и <i>false</i>. Значение по умолчанию: <i>false</i>;</p>
+        <p><b>wrapper</b> - Параметр, который определяет оборачивать или нет элемент в div. Div нужен, что бы не слетала вёрстка, когда меняется позиционирование элемента. Функцию можно отключить, если указать стили для родительского элемента в css. В этом случае у родительского элемента внутренние отступы должны равняться нулю (padding:0;) Возможные значения: <i>true</i> и <i>false</i>. Значение по умолчанию: <i>true</i>;</p>
+        <p><b>parentWidth</b> - Параметр, который выставляет ширину элемента после изменения размеров окна браузера. Возможные значения: <i>true</i> и <i>false</i>. Значение по умолчанию: <i>true</i>;</p>
+        <h2>Ресурсы:</h2>
+        <p><a href="js/pos.fixed.js">Файл pos.fixed.js</a></p>
+        <p>Maxime, iusto, dolorum a sequi eligendi quisquam quam asperiores adipisci esse vero! Porro, a, ipsam, mollitia, quis nobis maiores voluptates provident esse animi accusamus distinctio quidem sunt dolorem dolore expedita!</p>
+        <p>Cupiditate, dignissimos, eligendi explicabo voluptatem dolorem mollitia veritatis incidunt laborum nemo voluptatibus distinctio similique totam tenetur autem minima delectus at repellendus. Officiis, quos, totam aperiam unde odio doloremque temporibus veritatis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, dignissimos, nisi, doloremque quam hic voluptate architecto dolor eos optio praesentium dolore voluptatibus adipisci aliquid molestiae possimus autem nesciunt veniam cum.</p>
+        <p>Cupiditate, dignissimos, eligendi explicabo voluptatem dolorem mollitia veritatis incidunt laborum nemo voluptatibus distinctio similique totam tenetur autem minima delectus at repellendus. Officiis, quos, totam aperiam unde odio doloremque temporibus veritatis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, dignissimos, nisi, doloremque quam hic voluptate architecto dolor eos optio praesentium dolore voluptatibus adipisci aliquid molestiae possimus autem nesciunt veniam cum.</p>
+        <p>Obcaecati, cupiditate aspernatur voluptate necessitatibus repudiandae reprehenderit asperiores labore maiores quas totam vero quasi voluptatum assumenda autem veritatis architecto esse sunt repellat. Natus, dicta magnam quas vitae et nemo dignissimos.</p>
+      </div>
+
+      <div class="clear"></div>
+
+      <div class="content_col sec_contnt_part">
+        <p>Obcaecati, cupiditate aspernatur voluptate necessitatibus repudiandae reprehenderit asperiores labore maiores quas totam vero quasi voluptatum assumenda autem veritatis architecto esse sunt repellat. Natus, dicta magnam quas vitae et nemo dignissimos.</p>
+        <p>Porro, reiciendis, nam, minima omnis quasi numquam eligendi fugiat libero dolorum quisquam praesentium sed illum minus quidem deleniti fugit tempore eaque quia similique voluptatum placeat doloribus animi voluptate sint inventore!</p>
+        <p>Maxime, iusto, dolorum a sequi eligendi quisquam quam asperiores adipisci esse vero! Porro, a, ipsam, mollitia, quis nobis maiores voluptates provident esse animi accusamus distinctio quidem sunt dolorem dolore expedita!</p>
+        <p>Cupiditate, dignissimos, eligendi explicabo voluptatem dolorem mollitia veritatis incidunt laborum nemo voluptatibus distinctio similique totam tenetur autem minima delectus at repellendus. Officiis, quos, totam aperiam unde odio doloremque temporibus veritatis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, dignissimos, nisi, doloremque quam hic voluptate architecto dolor eos optio praesentium dolore voluptatibus adipisci aliquid molestiae possimus autem nesciunt veniam cum.</p>
+        <p>Obcaecati, cupiditate aspernatur voluptate necessitatibus repudiandae reprehenderit asperiores labore maiores quas totam vero quasi voluptatum assumenda autem veritatis architecto esse sunt repellat. Natus, dicta magnam quas vitae et nemo dignissimos.</p>
+        <p>Porro, reiciendis, nam, minima omnis quasi numquam eligendi fugiat libero dolorum quisquam praesentium sed illum minus quidem deleniti fugit tempore eaque quia similique voluptatum placeat doloribus animi voluptate sint inventore!</p>
+        <p>Maxime, iusto, dolorum a sequi eligendi quisquam quam asperiores adipisci esse vero! Porro, a, ipsam, mollitia, quis nobis maiores voluptates provident esse animi accusamus distinctio quidem sunt dolorem dolore expedita!</p>
+        <p>Cupiditate, dignissimos, eligendi explicabo voluptatem dolorem mollitia veritatis incidunt laborum nemo voluptatibus distinctio similique totam tenetur autem minima delectus at repellendus. Officiis, quos, totam aperiam unde odio doloremque temporibus veritatis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, dignissimos, nisi, doloremque quam hic voluptate architecto dolor eos optio praesentium dolore voluptatibus adipisci aliquid molestiae possimus autem nesciunt veniam cum.</p>
+        <p>Obcaecati, cupiditate aspernatur voluptate necessitatibus repudiandae reprehenderit asperiores labore maiores quas totam vero quasi voluptatum assumenda autem veritatis architecto esse sunt repellat. Natus, dicta magnam quas vitae et nemo dignissimos.</p>
+        <p>Porro, reiciendis, nam, minima omnis quasi numquam eligendi fugiat libero dolorum quisquam praesentium sed illum minus quidem deleniti fugit tempore eaque quia similique voluptatum placeat doloribus animi voluptate sint inventore!</p>
+        <p>Maxime, iusto, dolorum a sequi eligendi quisquam quam asperiores adipisci esse vero! Porro, a, ipsam, mollitia, quis nobis maiores voluptates provident esse animi accusamus distinctio quidem sunt dolorem dolore expedita!</p>
+        <p>Cupiditate, dignissimos, eligendi explicabo voluptatem dolorem mollitia veritatis incidunt laborum nemo voluptatibus distinctio similique totam tenetur autem minima delectus at repellendus. Officiis, quos, totam aperiam unde odio doloremque temporibus veritatis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, dignissimos, nisi, doloremque quam hic voluptate architecto dolor eos optio praesentium dolore voluptatibus adipisci aliquid molestiae possimus autem nesciunt veniam cum.</p>
+        <p>Obcaecati, cupiditate aspernatur voluptate necessitatibus repudiandae reprehenderit asperiores labore maiores quas totam vero quasi voluptatum assumenda autem veritatis architecto esse sunt repellat. Natus, dicta magnam quas vitae et nemo dignissimos.</p>
+        <p>Porro, reiciendis, nam, minima omnis quasi numquam eligendi fugiat libero dolorum quisquam praesentium sed illum minus quidem deleniti fugit tempore eaque quia similique voluptatum placeat doloribus animi voluptate sint inventore!</p>
+        <p>Maxime, iusto, dolorum a sequi eligendi quisquam quam asperiores adipisci esse vero! Porro, a, ipsam, mollitia, quis nobis maiores voluptates provident esse animi accusamus distinctio quidem sunt dolorem dolore expedita!</p>
+        <p>Cupiditate, dignissimos, eligendi explicabo voluptatem dolorem mollitia veritatis incidunt laborum nemo voluptatibus distinctio similique totam tenetur autem minima delectus at repellendus. Officiis, quos, totam aperiam unde odio doloremque temporibus veritatis.</p>
+        <div class="page_actions_area clearfix">
+          <div class="float_r">
+            <a class="page_actions_btn top_btn" id="top_btn" href="#top"><i>&uarr;</i> to top</a>
+          </div>
+          <a class="page_actions_btn back_btn" id="back_btn" href="../samples.html"><i>&larr;</i> back</a>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="wrapper clearfix">
+
+      <div class="creater">Creater: <a href="http://www.gorik.name/" target="_blank">I am ...</a></div>
+      <div class="copy">&copy; This is footer</div>
+
+    </div>
+  </div>
+
+</div>
+
+<script src="js/jquery-1.10.0.min.js"></script>
+<script src="js/pos.fixed.js"></script>
+<script>
+  $('document').ready(function(){
+    $('.search_field').fixeditem({
+      correctY: '10',
+      wrapper: false
+    });
+    $('#right_float').fixeditem({
+      correctY: '90',
+      container: $('#float_area')
+    });
+    $('#top_btn').fixeditem({
+      rightSide: true,
+      correctY: '10',
+      position: 'bottom',
+      container: $('.sec_contnt_part')
+    });
+    $('#back_btn').fixeditem({
+      position: 'bottom'
+    });
+  });
+</script>
+
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-16569331-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

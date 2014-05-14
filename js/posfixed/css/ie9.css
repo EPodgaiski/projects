@@ -1,0 +1,15 @@
+.btn_stl, .search_field{behavior:url(js/PIE.htc);}
+.btn_stl{background-color:#0096e4;
+	-pie-background:linear-gradient(top, #00a8ff 0, #0088ce 100%);
+}
+	.btn_stl:hover{background-color:#0089d1;
+		-pie-background:linear-gradient(top, #00a8ff 0, #00659a 100%);
+	}
+
+	.btn_stl:active{background-color:#0089d1;
+		-pie-background:linear-gradient(top, #00a8ff 0, #00659a 100%);
+	}
+
+.search_field{background-color:#efd152;
+	-pie-background:linear-gradient(top, #ffe87f 0, #e0ba23 100%);
+}

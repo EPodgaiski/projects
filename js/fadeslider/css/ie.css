@@ -1,0 +1,17 @@
+.btn_stl{
+	filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#FF00a8ff', endColorstr='#FF0088ce',GradientType=0);
+}
+	.btn_stl:hover{
+		filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#FF00a8ff', endColorstr='#FF00659a',GradientType=0);
+	}
+
+	.btn_stl:active{
+		filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#FF00a8ff', endColorstr='#FF00659a',GradientType=0);
+	}
+
+.search_field{
+	filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFffe87f', endColorstr='#FFe0ba23',GradientType=0);
+}
+
+.main{outline:2px solid #bebebe;}
+.search_field, .sidebar_box, .page_actions_btn.state_fixed{outline:1px solid #bebebe;}
