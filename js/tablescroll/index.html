@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Таблица сравнения на jQuery с фиксированной шапкой и левым столбцом.</title>
+<script src="js/jquery-1.10.0.min.js"></script>
+<script src="js/compare.js"></script>
+
+<style>
+	body{font:12px Arial, Helvetica, sans-serif;}
+	table, tr, th, td{border-collapse:collapse; margin:0; padding:0; vertical-align:top; text-align:left; border:1px solid}
+	th, td{padding:10px; min-width:100px;
+		-webkit-box-sizing:border-box;
+		-moz-box-sizing:border-box;
+		box-sizing:border-box;
+	}
+	th{background-color:#f2f2f2;}
+	td{background-color:#FFF;}
+		.title td{background-color:#FF0; padding:0;}
+			.title span{padding:10px; display:inline-block; background-color:#FF0;}
+		th:first-child, td:first-child{font-weight:bold;}
+
+	.clone{position:absolute; top:0; left:0;}
+		.clone .title span{overflow:visible; white-space:nowrap; width:100%;}
+
+	.scroll_bar{height:18px; overflow:scroll;}
+		.scroll_bar > div{height:1px; overflow:hidden;}
+
+	.table_area{overflow:hiden;}
+
+	.original{overflow:auto;}
+		.original table{position:relative;}
+
+	.fixed_header{position:relative; height:0; overflow:hidden;}
+		.fixed_header #fixedheader.topFixed{position:fixed; box-shadow:0 2px 3px #CCC; top:0; z-index:10;}
+		
+	.clone_header{overflow:auto;}
+	.clone_first_sel{z-index:5; position:absolute;}
+</style>
+
+<div style=" padding-top:10px; width:700px; margin:auto;">
+  <h1>Таблица сравнения на jQuery с фиксированной шапкой и левым столбцом. Двойной скролл.</h1>
+  <p>*пока есть проблемы в safary. Скрипт пока не пригоден для быстрого внедрения</p>
+  <div class="butons" style="text-align:center; padding:15px; display:none;">
+    <a href="javascript:void(0)" id="toggle_param">скрыть / показать равные параметры</a>
+  </div>
+  <div id="container_2">
+    <div style="position:relative; overflow:hidden;" id="container">
+      <div class="fixed_header"><div id="fixedheader"></div></div>
+      <div class="table_area original">
+        <table width="100%">
+          <thead>
+            <tr>
+              <th>header 1</th>
+              <th>header 2</th>
+              <th>header 3</th>
+              <th>header 4</th>
+              <th>header 5</th>
+              <th>header 6</th>
+              <th>header 7</th>
+              <th>header 8</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>content text1</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value content value, content value content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+            </tr>
+            <tr>
+              <td>content text2 content text</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+            </tr>
+            <tr class="title">
+              <td colspan="100"><span>TITLE1</span></td>
+            </tr>
+            <tr>
+              <td>content text3</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+            </tr>
+            <tr class="similar_params">
+              <td>content text4</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+            </tr>
+            <tr>
+              <td>content text5</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+            </tr>
+            <tr class="title">
+              <td colspan="100"><span>TITLE1</span></td>
+            </tr>
+            <tr class="similar_params">
+              <td>content text6</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+            </tr>
+            <tr>
+              <td>content text7</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+            </tr>
+            <tr>
+              <td>content text8</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+            </tr>
+            <tr class="similar_params">
+              <td>content text9</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+            </tr>
+            <tr>
+              <td>content text10</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+            </tr>
+            <tr>
+              <td>content text11</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+            </tr>
+            <tr class="similar_params">
+              <td>content text12</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+            </tr>
+            <tr class="title">
+              <td colspan="100"><span>TITLE1</span></td>
+            </tr>
+            <tr>
+              <td>content text13</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+            </tr>
+            <tr>
+              <td>content text14</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+            </tr>
+            <tr class="similar_params">
+              <td>content text15</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+            </tr>
+            <tr class="title">
+              <td colspan="100"><span>TITLE1</span></td>
+            </tr>
+            <tr>
+              <td>content text16</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+            </tr>
+            <tr>
+              <td>content text17</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+            </tr>
+            <tr class="similar_params">
+              <td>content text18</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+            </tr>
+            <tr class="title">
+              <td colspan="100"><span>TITLE1</span></td>
+            </tr>
+            <tr>
+              <td>content text19</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+            </tr>
+            <tr>
+              <td>content text20</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+              <td>content value</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-16569331-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
