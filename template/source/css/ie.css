@@ -1,0 +1,5 @@
+a:hover, .a:hover{text-decoration:none; color:#00549a;}
+
+.select select{filter:alpha(opacity=0);}
+
+.popup_mask{filter:alpha(opacity=75);}
