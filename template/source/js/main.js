@@ -33,13 +33,12 @@ function changeCheckboxAction(){
     });
 }
 
-function changeCheck(el)
-{
+function changeCheck(el){
     var input = el.find("input").eq(0);
 
-    if(input.prop("disabled")) return false;
+    if (input.prop("disabled")) return false;
 
-    if(!input.prop("checked")){
+    if (!input.prop("checked")){
         el.addClass("checked");
         input.prop("checked", true);
     }
@@ -53,8 +52,7 @@ function changeCheck(el)
     return true;
 }
 
-function changeCheckStart(el)
-{
+function changeCheckStart(el){
     var input = el.find("input").eq(0);
 
     if(input.prop("disabled")){ el.addClass("disabled"); }
@@ -63,8 +61,7 @@ function changeCheckStart(el)
     return true;
 }
 
-function changeRadioboxAction()
-{
+function changeRadioboxAction(){
     $('input[type="radio"]').each( function(){ changeRadioStart($(this)); });
 
     $('.js_radio_box_area label').on({
@@ -74,17 +71,15 @@ function changeRadioboxAction()
     });
 }
 
-function changeRadio(el)
-{
+function changeRadio(el){
     var input = el.find("input"),
         nm = input.attr("name");
 
-    if(el.attr("class").indexOf("disabled") == -1)
-    {
+    if (el.attr("class").indexOf("disabled") == -1){
         $(".js_radio_box input").each( function(){
-        var tInpt = $(this);
-            if(tInpt.attr("name") == nm)
-            {
+            var tInpt = $(this);
+
+            if (tInpt.attr("name") == nm){
                 tInpt.parent().removeClass("checked");
                 tInpt.removeAttr("checked");
             }
@@ -98,26 +93,24 @@ function changeRadio(el)
     return true;
 }
 
-function changeVisualRadio(input)
-{
+function changeVisualRadio(input){
     var wrapInput = input.parent(),
         nm = input.attr("name");
 
     $(".js_radio_box input").each( function(){
-        if($(this).attr("name") == nm)
+        if ($(this).attr("name") == nm)
             $(this).parent().removeClass("checked");
     });
 
     if(input.attr("checked")){ wrapInput.addClass("checked"); }
 }
 
-function changeRadioStart(el)
-{
+function changeRadioStart(el){
     var radioChecked = el.attr("checked"),
         radioDisabled = el.attr("disabled");
 
-    if(radioChecked){ el.closest('.js_radio_box').addClass('checked'); }
-    if(radioDisabled){ el.closest('.js_radio_box').addClass('disabled'); }
+    if (radioChecked){ el.closest('.js_radio_box').addClass('checked'); }
+    if (radioDisabled){ el.closest('.js_radio_box').addClass('disabled'); }
 
     el.on("change", function(e){ changeVisualRadio($(this).closest('.js_radio_box')) });
     el.closest('.js_radio_box').on("mousedown", function(e){ changeRadio($(this)) });
@@ -130,7 +123,7 @@ function customSelect(celector){
             selWrap = $('<span />',{'class':'select'}).addClass($this.attr('class')),
             customSelVal = $('<span>',{'class':'select_val','text':selVal});
 
-        if($this.prop('disabled')){
+        if ($this.prop('disabled')){
             selWrap.addClass('disabled');
         }
 
