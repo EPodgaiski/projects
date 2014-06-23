@@ -94,6 +94,7 @@ ul{list-style:none;}
 .bold{font-weight:bold;}
 
 .dotted, .spec_decor > .dotted{border-bottom:1px dotted; text-decoration:none;}
+.dashed, .spec_decor > .dashed{border-bottom:1px dashed; text-decoration:none;}
 
 .text_left{text-align:left;}
 .text_right{text-align:right;}
@@ -269,7 +270,7 @@ h4{}
 ******************************/
 header{}
 	.logo{}
-		.logo img{max-height:100%; max-width:100%; text-align:center; border-radius:5px;}
+		.logo img{max-height:100%; max-width:100%; text-align:center;}
 
 @media only screen and (-Webkit-min-device-pixel-ratio: 1.5),
 	only screen and (-moz-min-device-pixel-ratio: 1.5),
