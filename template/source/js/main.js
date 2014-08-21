@@ -116,29 +116,62 @@ function changeRadioStart(el){
     el.closest('.js_radio_box').on("mousedown", function(e){ changeRadio($(this)) });
 }
 
-function customSelect(celector){
-    $(celector).each(function(){
+function customSelect(selector){
+    $(selector).each(function(){
         var $this = $(this),
-            selVal = $this.find('option:selected').text()||' ',
+            selOption = $this.find('option:selected'),
+            selVal = selOption.text() || ' ',
             selWrap = $('<span />',{'class':'select'}).addClass($this.attr('class')),
-            customSelVal = $('<span>',{'class':'select_val','text':selVal});
+            customSelVal = $('<span>',{'class':'select_val','text':selVal}),
+            selLabel = $this.attr('data-label') || 0,
+            selPlaceholder = $this.attr('data-placeholder') || 0,
+            selStyle = $this.attr('style') || 0,
+            selWidth = $this.attr('width') || 0;
 
-        if ($this.prop('disabled')){
+        if($this.prop('disabled')){
             selWrap.addClass('disabled');
+        }
+        if (selPlaceholder.length){
+            $this.attr('autocomplete','off')
+            if(selPlaceholder == 'optionFirst'){
+                $this.find('option').eq(0).attr('disabled','disabled').hide();
+            }else{
+                customSelVal.text(selPlaceholder);
+            }
+        }
+        if (selLabel.length){
+            customSelVal.attr('data-label', selLabel + ' ');
+        }
+        if (selStyle.length){
+            selWrap.attr('style', selStyle);
+        }
+        if (selWidth.length){
+            selWrap.css('width', selWidth);
         }
 
         $this.wrap(selWrap);
         customSelVal.prependTo($this.parent());
     })
 
-    $('select').on('change', function(){
-        customSelectChange(this);
+    $('select').on({
+        change: function(){
+            customSelectChange(this);
+        },
+        focus: function(){
+            if (!$(this).prop('disabled'))
+                $(this).closest('.select').addClass('in_focus');
+        },
+        blur: function(){
+            $(this).closest('.select').removeClass('in_focus');
+        }
     })
 }
 
 function customSelectChange(el){
-    var tSelVal = $(el).find('option:selected').text();
-    $(el).closest('.select').find('.select_val').text(tSelVal);
+    var el = $(el),
+        tSelVal = el.find('option:selected').text();
+
+    el.closest('.select').find('.select_val').text(tSelVal);
 }
 
 function showLoader(container){
@@ -149,11 +182,62 @@ function hideLoader(container){
     container.removeClass('ajax_preloader');
 }
 
+function popupPosition(popup){
+    var popup = $(popup),
+        winHeight = $(window).height(),
+        ppTopCntr = (winHeight - popup.outerHeight()) / 2,
+        ppLeftCntr = ($(window).width() - popup.outerWidth()) / 2,
+        ppTop = $(window).scrollTop(),
+        ppleft = $(window).scrollLeft();
+
+    if (ppTopCntr >= 0)
+        ppTop = ppTopCntr + ppTop;
+    if (ppLeftCntr >= 0)
+        ppleft = ppLeftCntr + ppleft;
+
+    popup.css({
+        'top': ppTop,
+        'left': ppleft
+    });
+}
+
+function showPopup(popup){
+    var popup = $(popup);
+
+    if (popup.length){
+        $('.popup_mask').show();
+        popup.show();
+        popupPosition(popup);
+        $('body').css({
+            overflow: 'hidden',
+            position: 'relative'
+        });
+    }
+}
+
+function closePopup(popup){
+    var popup = $(popup);
+
+    $('.popup_mask').hide();
+    if (popup.length){
+        popup.css({
+            'display': 'none',
+            'top': '',
+            'left': ''
+        });
+        popup.find('#js_full_image').attr('src','');
+    }
+    $('body').css({
+        overflow: '',
+        position: ''
+    });
+}
+
 $('document').ready(function(){
 
-    $(document).on('click','.popup_mask', function(){
-        $('.popup_mask').hide();
-    })
+    $(document).on('click','.popup_mask, .js_poup_close', function(){
+        closePopup('.popup:visible')
+    });
 
     $('input[placeholder]').placeholder();
 
