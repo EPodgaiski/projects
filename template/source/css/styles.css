@@ -155,7 +155,8 @@ ul{list-style:none;}
         .ch_box_area .radio_box.disabled{background-position:-425px -125px; cursor:default;}
         .ch_box_area .check_box.disabled{background-position:-400px -125px; cursor:default;}
     .radio_box input, .check_box input{display:none;}
-    .ch_box_area label{padding-left:7px; display:inline-block; cursor:pointer;}
+    .ch_box_area .check_box + label, .ch_box_area .radio_box + label{padding-left:7px;}
+    .ch_box_area label{display:inline-block; cursor:pointer;}
     .check_box.disabled + label, .radio_box.disabled + label{color:#aaa; cursor:default;}
     .ch_box_row .check_box{display:block; float:left; top:2px;}
     .ch_box_row label, .ch_box_txt{display:block; margin-left:25px; padding:0;}
