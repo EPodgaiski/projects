@@ -233,7 +233,7 @@ function closePopup(popup){
     });
 }
 
-$('document').ready(function(){
+$(document).ready(function(){
 
     $(document).on('click','.popup_mask, .js_poup_close', function(){
         closePopup('.popup:visible')
