@@ -67,7 +67,7 @@ select, .select{height:34px; padding:5px 5px 5px 10px; vertical-align:baseline; 
 }
 textarea[disabled]{resize:none;}
 
-button{cursor:pointer; outline:none;}
+button{cursor:pointer; outline:none; padding:0; border:0;}
     button::-moz-focus-inner{padding:0; border:0;}
 
 ::-webkit-input-placeholder{color:#989795;}
